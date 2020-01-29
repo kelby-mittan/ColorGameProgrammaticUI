@@ -14,6 +14,7 @@
 		02929C3C23E0D7D000879632 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02929C3A23E0D7D000879632 /* LaunchScreen.storyboard */; };
 		02929C4723E0D7D000879632 /* ColorGameProgrammaticUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02929C4623E0D7D000879632 /* ColorGameProgrammaticUITests.swift */; };
 		02929C5223E0DA2900879632 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02929C5123E0DA2900879632 /* MainView.swift */; };
+		02929C5423E0F1AF00879632 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02929C5323E0F1AF00879632 /* GameModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		02929C4623E0D7D000879632 /* ColorGameProgrammaticUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGameProgrammaticUITests.swift; sourceTree = "<group>"; };
 		02929C4823E0D7D000879632 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02929C5123E0DA2900879632 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		02929C5323E0F1AF00879632 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				02929C3123E0D7CB00879632 /* SceneDelegate.swift */,
 				02929C5123E0DA2900879632 /* MainView.swift */,
 				02929C3323E0D7CB00879632 /* ColorController.swift */,
+				02929C5323E0F1AF00879632 /* GameModel.swift */,
 				02929C3823E0D7D000879632 /* Assets.xcassets */,
 				02929C3A23E0D7D000879632 /* LaunchScreen.storyboard */,
 				02929C3D23E0D7D000879632 /* Info.plist */,
@@ -199,6 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02929C5423E0F1AF00879632 /* GameModel.swift in Sources */,
 				02929C3423E0D7CB00879632 /* ColorController.swift in Sources */,
 				02929C5223E0DA2900879632 /* MainView.swift in Sources */,
 				02929C3023E0D7CB00879632 /* AppDelegate.swift in Sources */,

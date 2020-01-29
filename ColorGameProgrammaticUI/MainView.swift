@@ -65,6 +65,7 @@ class MainView: UIView {
     private func commonInit() {
         setupTitleLabelConstraints()
         setupColorViewConstraints()
+        setupStackView()
     }
     
     private func setupTitleLabelConstraints() {
@@ -101,7 +102,30 @@ class MainView: UIView {
     }
     
     private func setupStackView() {
+        addSubview(stackView)
+        addSubview(redButton)
+        addSubview(greenButton)
+        addSubview(blueButton)
         
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        redButton.translatesAutoresizingMaskIntoConstraints = false
+        greenButton.translatesAutoresizingMaskIntoConstraints = false
+        blueButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        stackView.addArrangedSubview(redButton)
+        stackView.addArrangedSubview(greenButton)
+        stackView.addArrangedSubview(blueButton)
+        
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 50
+        
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: colorView.bottomAnchor, constant: 20),
+            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            stackView.widthAnchor.constraint(equalTo: colorView.widthAnchor, multiplier: 1),
+            stackView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.1)
+        ])
     }
 
 }
