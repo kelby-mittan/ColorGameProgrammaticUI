@@ -50,6 +50,22 @@ class MainView: UIView {
         return button
     }()
     
+    public lazy var scoreLabel: UILabel = {
+        let scoreStr = UILabel()
+        scoreStr.text = "Score"
+        scoreStr.font = scoreStr.font.withSize(25)
+        scoreStr.textAlignment = .center
+        scoreStr.backgroundColor = .systemYellow
+        return scoreStr
+    }()
+    
+    public lazy var resetButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Reset", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         
@@ -66,6 +82,8 @@ class MainView: UIView {
         setupTitleLabelConstraints()
         setupColorViewConstraints()
         setupStackView()
+        setupScoreLabelConstraints()
+        setupResetButtonConstraints()
     }
     
     private func setupTitleLabelConstraints() {
@@ -127,5 +145,34 @@ class MainView: UIView {
             stackView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.1)
         ])
     }
+    
+    private func setupScoreLabelConstraints() {
+        // add message label to the main view
+        addSubview(scoreLabel) // returns the message label we created above
+        
+        // set constraints for the messageLabel
+        scoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+
+            scoreLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
+            
+            scoreLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            
+            scoreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+        ])
+    }
+    
+    private func setupResetButtonConstraints() {
+        addSubview(resetButton)
+        resetButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            resetButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            resetButton.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 40)
+        ])
+        
+    }
+
 
 }

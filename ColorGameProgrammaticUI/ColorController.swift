@@ -8,12 +8,6 @@
 
 import UIKit
 
-enum RGB {
-    case red
-    case green
-    case blue
-}
-
 class ColorController: UIViewController {
     
     private let mainView = MainView()
@@ -24,6 +18,7 @@ class ColorController: UIViewController {
     private var randomBlue = CGFloat.random(in: 0...1)
     private var maxColor = CGFloat()
     private var maxColorString = String()
+    private var score = 0
     
     override func loadView() {
         view = mainView
@@ -31,14 +26,11 @@ class ColorController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         color = ranColorGenerator()
         mainView.backgroundColor = .white
         mainView.colorView.backgroundColor = color
-        
-        mainView.redButton.addTarget(self, action: #selector(redButtonPressed(_:)), for: .touchUpInside)
-        mainView.greenButton.addTarget(self, action: #selector(greenButtonPressed(_:)), for: .touchUpInside)
-        mainView.blueButton.addTarget(self, action: #selector(blueButtonPressed(_:)), for: .touchUpInside)
+        updateUI()
     }
     
     private func ranColorGenerator() -> UIColor {
@@ -58,14 +50,28 @@ class ColorController: UIViewController {
         return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: CGFloat.random(in: 0.5...1))
     }
     
+    private func updateUI() {
+        mainView.scoreLabel.text = "Score: \(score.description)"
+        mainView.redButton.addTarget(self, action: #selector(redButtonPressed(_:)), for: .touchUpInside)
+        mainView.greenButton.addTarget(self, action: #selector(greenButtonPressed(_:)), for: .touchUpInside)
+        mainView.blueButton.addTarget(self, action: #selector(blueButtonPressed(_:)), for: .touchUpInside)
+        mainView.resetButton.addTarget(self, action: #selector(resetButtonPressed(_:)), for: .touchUpInside)
+    }
+    
     @objc
     private func redButtonPressed(_ sender: UIButton) {
         if maxColorString == "red" {
             print("correct")
             color = ranColorGenerator()
             mainView.colorView.backgroundColor = color
+            score += 10
+            mainView.scoreLabel.text = "Score: \(score.description)"
         } else {
-            print("wrong")
+            mainView.scoreLabel.text = "Game Over!!! Score: \(score.description)"
+            score = 0
+            mainView.redButton.isEnabled = false
+            mainView.greenButton.isEnabled = false
+            mainView.blueButton.isEnabled = false
         }
     }
     
@@ -75,10 +81,15 @@ class ColorController: UIViewController {
             print("correct")
             color = ranColorGenerator()
             mainView.colorView.backgroundColor = color
+            score += 10
+            mainView.scoreLabel.text = "Score: \(score.description)"
         } else {
-            print("wrong")
+            mainView.scoreLabel.text = "Game Over!!! Score: \(score.description)"
+            score = 0
+            mainView.redButton.isEnabled = false
+            mainView.greenButton.isEnabled = false
+            mainView.blueButton.isEnabled = false
         }
-//        checkColor()
     }
 
     @objc
@@ -87,12 +98,27 @@ class ColorController: UIViewController {
             print("correct")
             color = ranColorGenerator()
             mainView.colorView.backgroundColor = color
+            score += 10
+            mainView.scoreLabel.text = "Score: \(score.description)"
         } else {
-            print("wrong")
+            mainView.scoreLabel.text = "Game Over!!! Score: \(score.description)"
+            score = 0
+            mainView.redButton.isEnabled = false
+            mainView.greenButton.isEnabled = false
+            mainView.blueButton.isEnabled = false
         }
-//        checkColor()
     }
     
-    
+    @objc
+    private func resetButtonPressed(_ sender: UIButton) {
+        color = ranColorGenerator()
+        mainView.colorView.backgroundColor = color
+        mainView.scoreLabel.text = "Score: \(score.description)"
+        mainView.redButton.isEnabled = true
+        mainView.greenButton.isEnabled = true
+        mainView.blueButton.isEnabled = true
+    }
+
+        
 }
 
