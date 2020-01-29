@@ -66,6 +66,14 @@ class MainView: UIView {
         return button
     }()
     
+    public lazy var highScoreLabel: UILabel = {
+        let scoreStr = UILabel()
+        scoreStr.font = scoreStr.font.withSize(25)
+        scoreStr.textAlignment = .center
+        scoreStr.backgroundColor = .systemYellow
+        return scoreStr
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         
@@ -84,6 +92,7 @@ class MainView: UIView {
         setupStackView()
         setupScoreLabelConstraints()
         setupResetButtonConstraints()
+        setupHighScoreLabelConstraints()
     }
     
     private func setupTitleLabelConstraints() {
@@ -172,6 +181,23 @@ class MainView: UIView {
             resetButton.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 40)
         ])
         
+    }
+    
+    private func setupHighScoreLabelConstraints() {
+        // add message label to the main view
+        addSubview(highScoreLabel) // returns the message label we created above
+        
+        // set constraints for the messageLabel
+        highScoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+
+            highScoreLabel.topAnchor.constraint(equalTo: resetButton.bottomAnchor, constant: 20),
+            
+            highScoreLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            
+            highScoreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+        ])
     }
 
 

@@ -8,6 +8,10 @@
 
 import UIKit
 
+struct AppKey {
+    static let appScoreKey = "app score"
+}
+
 class ColorController: UIViewController {
     
     private let mainView = MainView()
@@ -19,6 +23,7 @@ class ColorController: UIViewController {
     private var maxColor = CGFloat()
     private var maxColorString = String()
     private var score = 0
+    var highScore = Int()
     
     override func loadView() {
         view = mainView
@@ -26,7 +31,7 @@ class ColorController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         color = ranColorGenerator()
         mainView.backgroundColor = .white
         mainView.colorView.backgroundColor = color
@@ -52,10 +57,21 @@ class ColorController: UIViewController {
     
     private func updateUI() {
         mainView.scoreLabel.text = "Score: \(score.description)"
+        if let score = UserDefaults.standard.object(forKey: AppKey.appScoreKey) as? Int {
+            mainView.highScoreLabel.text = "High Score: \(score.description)"
+        }
         mainView.redButton.addTarget(self, action: #selector(redButtonPressed(_:)), for: .touchUpInside)
         mainView.greenButton.addTarget(self, action: #selector(greenButtonPressed(_:)), for: .touchUpInside)
         mainView.blueButton.addTarget(self, action: #selector(blueButtonPressed(_:)), for: .touchUpInside)
         mainView.resetButton.addTarget(self, action: #selector(resetButtonPressed(_:)), for: .touchUpInside)
+    }
+    
+    private func setHighScore(score: Int) {
+        if score >= highScore {
+            highScore = score
+            UserDefaults.standard.set(highScore, forKey: AppKey.appScoreKey)
+        }
+        
     }
     
     @objc
@@ -68,6 +84,7 @@ class ColorController: UIViewController {
             mainView.scoreLabel.text = "Score: \(score.description)"
         } else {
             mainView.scoreLabel.text = "Game Over!!! Score: \(score.description)"
+            setHighScore(score: score)
             score = 0
             mainView.redButton.isEnabled = false
             mainView.greenButton.isEnabled = false
@@ -84,6 +101,7 @@ class ColorController: UIViewController {
             score += 10
             mainView.scoreLabel.text = "Score: \(score.description)"
         } else {
+            setHighScore(score: score)
             mainView.scoreLabel.text = "Game Over!!! Score: \(score.description)"
             score = 0
             mainView.redButton.isEnabled = false
@@ -91,7 +109,7 @@ class ColorController: UIViewController {
             mainView.blueButton.isEnabled = false
         }
     }
-
+    
     @objc
     private func blueButtonPressed(_ sender: UIButton) {
         if maxColorString == "blue" {
@@ -102,6 +120,7 @@ class ColorController: UIViewController {
             mainView.scoreLabel.text = "Score: \(score.description)"
         } else {
             mainView.scoreLabel.text = "Game Over!!! Score: \(score.description)"
+            setHighScore(score: score)
             score = 0
             mainView.redButton.isEnabled = false
             mainView.greenButton.isEnabled = false
@@ -118,7 +137,7 @@ class ColorController: UIViewController {
         mainView.greenButton.isEnabled = true
         mainView.blueButton.isEnabled = true
     }
-
-        
+    
+    
 }
 
