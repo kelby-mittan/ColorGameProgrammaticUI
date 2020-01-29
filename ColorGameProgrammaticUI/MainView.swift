@@ -96,10 +96,8 @@ class MainView: UIView {
     }
     
     private func setupTitleLabelConstraints() {
-        // add message label to the main view
-        addSubview(titleLabel) // returns the message label we created above
+        addSubview(titleLabel)
         
-        // set constraints for the messageLabel
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -156,10 +154,8 @@ class MainView: UIView {
     }
     
     private func setupScoreLabelConstraints() {
-        // add message label to the main view
-        addSubview(scoreLabel) // returns the message label we created above
+        addSubview(scoreLabel)
         
-        // set constraints for the messageLabel
         scoreLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([

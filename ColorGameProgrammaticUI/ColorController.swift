@@ -131,6 +131,9 @@ class ColorController: UIViewController {
     @objc
     private func resetButtonPressed(_ sender: UIButton) {
         color = ranColorGenerator()
+        if let score = UserDefaults.standard.object(forKey: AppKey.appScoreKey) as? Int {
+            mainView.highScoreLabel.text = "High Score: \(score.description)"
+        }
         mainView.colorView.backgroundColor = color
         mainView.scoreLabel.text = "Score: \(score.description)"
         mainView.redButton.isEnabled = true
